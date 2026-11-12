@@ -50,15 +50,13 @@
     .youtube-player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
     .tag{display:inline-block;border:1px solid #ffffff25;border-radius:99px;padding:4px 10px;color:var(--cyan);font-size:.78rem}
     footer{border-top:1px solid #ffffff18;padding:28px 0;color:var(--muted);font-size:.9rem}
-    .music-card{position:fixed;right:14px;bottom:14px;z-index:20;width:min(270px,calc(100vw - 28px));padding:10px;background:#101b2df2;border:1px solid #ffffff30;border-radius:16px;box-shadow:0 12px 35px #0009;backdrop-filter:blur(12px)}
-    .music-heading{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;font-size:.85rem}
-    .music-heading strong{color:var(--cyan)}
-    .music-player{width:100%;aspect-ratio:16/9;background:#000;border-radius:9px;overflow:hidden}
-    .music-player iframe{width:100%;height:100%;border:0}
-    .music-controls{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px}
-    .music-controls button{border:0;border-radius:999px;padding:8px 13px;background:var(--blue);color:#06101d;font-weight:700;cursor:pointer}
+    .music-tab{position:fixed;right:14px;bottom:14px;z-index:20;border:1px solid #ffffff35;border-radius:999px;padding:10px 15px;background:#101b2df2;color:var(--text);font-weight:700;cursor:pointer;box-shadow:0 8px 24px #0008;backdrop-filter:blur(12px)}
+    .music-tab span{color:var(--cyan);margin-right:5px}
+    .music-tab:disabled{opacity:.65;cursor:wait}
+    .music-player{position:fixed;left:-10px;bottom:-10px;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}
+    .music-player iframe{width:1px;height:1px;border:0}
     .music-credit{font-size:.72rem;color:var(--muted)}
-    @media(max-width:720px){.links{gap:10px;font-size:.82rem}.story{grid-template-columns:1fr}.grid,.gallery{grid-template-columns:1fr}.hero{padding:65px 0 55px}.brand{font-size:1rem}.brand img{width:32px;height:32px}.music-card{right:10px;bottom:10px;width:225px}}
+    @media(max-width:720px){.links{gap:10px;font-size:.82rem}.story{grid-template-columns:1fr}.grid,.gallery{grid-template-columns:1fr}.hero{padding:65px 0 55px}.brand{font-size:1rem}.brand img{width:32px;height:32px}.music-tab{right:10px;bottom:10px}}
   </style>
 </head>
 <body>
@@ -182,14 +180,10 @@
   </section>
 </main>
 
-<aside class="music-card" aria-label="Reproductor de música de fondo">
-  <div class="music-heading"><strong>Música de fondo</strong><span class="music-credit">Volumen: 12%</span></div>
-  <div class="music-player"><div id="unity-player"></div></div>
-  <div class="music-controls">
-    <button id="music-toggle" type="button" disabled>Preparando…</button>
-    <span class="music-credit">TheFatRat · Unity</span>
-  </div>
-</aside>
+<button class="music-tab" id="music-toggle" type="button" disabled aria-label="Reproducir música de fondo">
+  <span>♫</span> Música
+</button>
+<div class="music-player" aria-hidden="true"><div id="unity-player"></div></div>
 
 <footer>
   <div class="wrap">
@@ -200,7 +194,6 @@
 </footer>
 <script>
   let unityPlayer;
-  let musicPlaying = false;
   const musicButton = document.getElementById('music-toggle');
   function onYouTubeIframeAPIReady() {
     unityPlayer = new YT.Player('unity-player', {
@@ -210,19 +203,15 @@
         onReady: function (event) {
           event.target.setVolume(12);
           musicButton.disabled = false;
-          musicButton.textContent = 'Reproducir música';
-        },
-        onStateChange: function (event) {
-          musicPlaying = event.data === YT.PlayerState.PLAYING;
-          musicButton.textContent = musicPlaying ? 'Pausar música' : 'Reproducir música';
+          musicButton.innerHTML = '<span>♫</span> Música';
         }
       }
     });
   }
   musicButton.addEventListener('click', function () {
     if (!unityPlayer || !unityPlayer.playVideo) return;
-    if (musicPlaying) unityPlayer.pauseVideo();
-    else unityPlayer.playVideo();
+    unityPlayer.playVideo();
+    musicButton.hidden = true;
   });
   const youtubeApi = document.createElement('script');
   youtubeApi.src = 'https://www.youtube.com/iframe_api';
