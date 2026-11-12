@@ -14,7 +14,8 @@
     .wrap{width:min(1100px,92%);margin:auto}
     header{position:sticky;top:0;z-index:10;background:#080d18ed;border-bottom:1px solid #ffffff18;backdrop-filter:blur(12px)}
     nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 0}
-    .brand{font-weight:900;letter-spacing:1px;font-size:1.15rem}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:1px;font-size:1.15rem;white-space:nowrap}
+    .brand img{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid var(--blue);background:var(--panel)}
     .brand span{color:var(--blue)}
     .links{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:.92rem}
     .hero{padding:88px 0 72px;background:radial-gradient(ellipse at 80% 15%,#164a7a66,transparent 42%),linear-gradient(135deg,#0b1425,#080d18 65%)}
@@ -49,14 +50,22 @@
     .youtube-player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
     .tag{display:inline-block;border:1px solid #ffffff25;border-radius:99px;padding:4px 10px;color:var(--cyan);font-size:.78rem}
     footer{border-top:1px solid #ffffff18;padding:28px 0;color:var(--muted);font-size:.9rem}
-    @media(max-width:720px){.links{gap:10px;font-size:.82rem}.story{grid-template-columns:1fr}.grid,.gallery{grid-template-columns:1fr}.hero{padding:65px 0 55px}}
+    .music-card{position:fixed;right:14px;bottom:14px;z-index:20;width:min(270px,calc(100vw - 28px));padding:10px;background:#101b2df2;border:1px solid #ffffff30;border-radius:16px;box-shadow:0 12px 35px #0009;backdrop-filter:blur(12px)}
+    .music-heading{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;font-size:.85rem}
+    .music-heading strong{color:var(--cyan)}
+    .music-player{width:100%;aspect-ratio:16/9;background:#000;border-radius:9px;overflow:hidden}
+    .music-player iframe{width:100%;height:100%;border:0}
+    .music-controls{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px}
+    .music-controls button{border:0;border-radius:999px;padding:8px 13px;background:var(--blue);color:#06101d;font-weight:700;cursor:pointer}
+    .music-credit{font-size:.72rem;color:var(--muted)}
+    @media(max-width:720px){.links{gap:10px;font-size:.82rem}.story{grid-template-columns:1fr}.grid,.gallery{grid-template-columns:1fr}.hero{padding:65px 0 55px}.brand{font-size:1rem}.brand img{width:32px;height:32px}.music-card{right:10px;bottom:10px;width:225px}}
   </style>
 </head>
 <body>
 <header>
   <div class="wrap">
     <nav>
-      <a class="brand" href="#inicio">MINER<span>MASTER21</span></a>
+      <a class="brand" href="#inicio"><img src="https://unavatar.io/youtube/@Minermaster21" alt="Foto de perfil de Minermaster21" onerror="this.style.display='none'"><span>MINERMASTER21</span></a>
       <div class="links">
         <a href="#historia">Mi historia</a><a href="#videos">Vídeos</a><a href="#galeria">Galería</a><a href="#proyectos">Proyectos</a>
       </div>
@@ -68,8 +77,7 @@
   <section class="hero" id="inicio">
     <div class="wrap">
       <div class="eyebrow">Creador de contenido · Desde 2023</div>
-      <h1>Hola, soy <span>Diego.</span></h1>
-      <p class="lead">También conocido como Minermaster21.</p>
+      <h1>Bienvenidos a la web de <span>Minermaster21.</span></h1>
       <p class="lead">Humor, vídeos, ideas y proyectos. Este es mi espacio oficial para compartir lo que hago y el camino que estoy construyendo como creador.</p>
       <div class="actions">
         <!-- Sustituye # por el enlace real de tu canal -->
@@ -85,12 +93,12 @@
       <h2>Mi historia</h2>
       <div class="story">
         <div>
-          <p>Mis raíces están en Cuba y mi aventura como creador comenzó el <strong>6 de septiembre de 2023</strong>. Siempre me ha apasionado crear contenido y también he sido fanático del fútbol desde pequeño.</p>
-          <p>Antes había tenido otro canal que perdí. Por eso, mi primer Short en esta nueva etapa se llamó <strong>«Estamos de vuelta»</strong>: era una forma de empezar otra vez.</p>
-          <p>Entre los creadores que me inspiraron están Vegetta, Fernanfloo y Karmaland, pero quien más me motivó a dar el paso fue Germán.</p>
-          <p>Mi primer vídeo largo fue <strong>«Construyendo una ciudad»</strong>, junto a SoyNattoff, mi primer colaborador.</p>
-          <p>El nombre <strong>Minermaster21</strong> también tiene su historia: el «21» viene del nombre que usaba mi primo en Minecraft, y «Miner» nació de un antiguo usuario que tuve en Zapya. Más tarde añadí «Master» al aprender algo de inglés. Con el tiempo, ese nombre se convirtió en una parte importante de mi identidad como creador.</p>
-          <p>Actualmente comparto sobre todo vídeos de humor. Los videojuegos siguen siendo parte de mis planes: quiero retomarlos cuando tenga un ordenador y pueda crear ese contenido como me gustaría.</p>
+          <p>¡Hola! Soy <strong>Diego Sanchez</strong>, aunque por aquí seguramente me conocerás como <strong>Minermaster21</strong>. Mis raíces están en Cuba y mi aventura creando contenido comenzó el <strong>6 de septiembre de 2023</strong>. Desde pequeño me han gustado los videojuegos, el fútbol y, sobre todo, compartir buenos momentos.</p>
+          <p>Este camino no empezó a la primera: antes tuve otro canal que acabé perdiendo. Pero no quería rendirme, así que volví con un Short llamado <strong>«Estamos de vuelta»</strong>. Y así comenzó una nueva etapa.</p>
+          <p>En el camino me han inspirado creadores como Vegetta, Fernanfloo y Karmaland, aunque quien más me animó a dar el paso fue Germán. Sus vídeos me demostraron lo divertido que podía ser crear contenido.</p>
+          <p>Mi primer vídeo largo fue <strong>«Construyendo una ciudad»</strong>, que hice junto a <strong>SoyNattoff</strong>, mi primer colaborador. Fue uno de esos primeros pasos que siempre se recuerdan.</p>
+          <p>Y sí, hasta mi nombre tiene una historia: <strong>«21»</strong> viene del nombre que usaba mi primo en Minecraft; <strong>«Miner»</strong> nació de un antiguo usuario que tuve en Zapya y, cuando aprendí algo más de inglés, le añadí <strong>«Master»</strong>. Con el tiempo, aquel nombre terminó convirtiéndose en mi marca.</p>
+          <p>Ahora comparto principalmente vídeos de humor, pero los videojuegos siguen muy presentes en mis planes. Me gustaría retomarlos con más fuerza cuando tenga un ordenador y pueda crear el contenido tal y como lo imagino. Esto todavía está empezando: ¡hay muchas ideas y aventuras por delante!</p>
         </div>
         <aside class="quote">
           <div class="section-label">Mi sueño</div>
@@ -174,6 +182,15 @@
   </section>
 </main>
 
+<aside class="music-card" aria-label="Reproductor de música de fondo">
+  <div class="music-heading"><strong>Música de fondo</strong><span class="music-credit">Volumen: 12%</span></div>
+  <div class="music-player"><div id="unity-player"></div></div>
+  <div class="music-controls">
+    <button id="music-toggle" type="button" disabled>Preparando…</button>
+    <span class="music-credit">TheFatRat · Unity</span>
+  </div>
+</aside>
+
 <footer>
   <div class="wrap">
     <strong>MINERMASTER21</strong>
@@ -181,5 +198,35 @@
     <p>© Minermaster21 · Página personal. Todos los derechos reservados.</p>
   </div>
 </footer>
+<script>
+  let unityPlayer;
+  let musicPlaying = false;
+  const musicButton = document.getElementById('music-toggle');
+  function onYouTubeIframeAPIReady() {
+    unityPlayer = new YT.Player('unity-player', {
+      videoId: 'n8X9_MgEdCg',
+      playerVars: { playsinline: 1, controls: 0, rel: 0, modestbranding: 1 },
+      events: {
+        onReady: function (event) {
+          event.target.setVolume(12);
+          musicButton.disabled = false;
+          musicButton.textContent = 'Reproducir música';
+        },
+        onStateChange: function (event) {
+          musicPlaying = event.data === YT.PlayerState.PLAYING;
+          musicButton.textContent = musicPlaying ? 'Pausar música' : 'Reproducir música';
+        }
+      }
+    });
+  }
+  musicButton.addEventListener('click', function () {
+    if (!unityPlayer || !unityPlayer.playVideo) return;
+    if (musicPlaying) unityPlayer.pauseVideo();
+    else unityPlayer.playVideo();
+  });
+  const youtubeApi = document.createElement('script');
+  youtubeApi.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(youtubeApi);
+</script>
 </body>
 </html>
