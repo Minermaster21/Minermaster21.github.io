@@ -50,13 +50,16 @@
     .youtube-player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
     .tag{display:inline-block;border:1px solid #ffffff25;border-radius:99px;padding:4px 10px;color:var(--cyan);font-size:.78rem}
     footer{border-top:1px solid #ffffff18;padding:28px 0;color:var(--muted);font-size:.9rem}
-    .music-tab{position:fixed;right:14px;bottom:14px;z-index:20;border:1px solid #ffffff35;border-radius:999px;padding:10px 15px;background:#101b2df2;color:var(--text);font-weight:700;cursor:pointer;box-shadow:0 8px 24px #0008;backdrop-filter:blur(12px)}
-    .music-tab span{color:var(--cyan);margin-right:5px}
-    .music-tab:disabled{opacity:.65;cursor:wait}
-    .music-player{position:fixed;left:-10px;bottom:-10px;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}
-    .music-player iframe{width:1px;height:1px;border:0}
+    .music-card{position:fixed;right:14px;bottom:14px;z-index:20;width:min(270px,calc(100vw - 28px));padding:10px;background:#101b2df2;border:1px solid #ffffff30;border-radius:16px;box-shadow:0 12px 35px #0009;backdrop-filter:blur(12px)}
+    .music-heading{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;font-size:.85rem}
+    .music-heading strong{color:var(--cyan)}
+    .music-player{width:100%;aspect-ratio:16/9;background:#000;border-radius:9px;overflow:hidden}
+    .music-player iframe{width:100%;height:100%;border:0}
+    .music-controls{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px}
+    .music-controls button{border:0;border-radius:999px;padding:8px 13px;background:var(--blue);color:#06101d;font-weight:700;cursor:pointer}
     .music-credit{font-size:.72rem;color:var(--muted)}
-    @media(max-width:720px){.links{gap:10px;font-size:.82rem}.story{grid-template-columns:1fr}.grid,.gallery{grid-template-columns:1fr}.hero{padding:65px 0 55px}.brand{font-size:1rem}.brand img{width:32px;height:32px}.music-tab{right:10px;bottom:10px}}
+    .news-list{display:grid;gap:16px}.news-item{background:var(--panel);border:1px solid #ffffff18;border-radius:18px;padding:22px}.news-date{color:var(--cyan);font-size:.82rem;font-weight:700;letter-spacing:.5px}.news-item h3{margin:7px 0}.community-intro{background:linear-gradient(145deg,#142b47,#111b2d);border:1px solid #ffffff20;border-radius:20px;padding:24px;margin:18px 0}.community-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.community-feature{background:var(--panel);border:1px solid #ffffff18;border-radius:16px;padding:18px}.community-feature .emoji{font-size:1.5rem}.access-note{border:1px solid #69e0e855;background:#69e0e810;border-radius:14px;padding:16px;color:var(--muted)}.coming-soon{display:inline-block;border:1px solid #69e0e855;color:var(--cyan);border-radius:99px;padding:4px 10px;font-size:.75rem;font-weight:700}.rank-list{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.rank-list .card{min-height:120px}
+    @media(max-width:720px){.links{gap:10px;font-size:.82rem}.story{grid-template-columns:1fr}.grid,.gallery{grid-template-columns:1fr}.hero{padding:65px 0 55px}.brand{font-size:1rem}.brand img{width:32px;height:32px}.music-card{right:10px;bottom:10px;width:225px}}
   </style>
 </head>
 <body>
@@ -65,7 +68,7 @@
     <nav>
       <a class="brand" href="#inicio"><img src="https://unavatar.io/youtube/@Minermaster21" alt="Foto de perfil de Minermaster21" onerror="this.style.display='none'"><span>MINERMASTER21</span></a>
       <div class="links">
-        <a href="#historia">Mi historia</a><a href="#videos">Vídeos</a><a href="#galeria">Galería</a><a href="#proyectos">Proyectos</a>
+        <a href="#historia">Mi historia</a><a href="#videos">Vídeos</a><a href="#noticias">Noticias</a><a href="#comunidad">Comunidad</a><a href="#galeria">Galería</a><a href="#proyectos">Proyectos</a>
       </div>
     </nav>
   </div>
@@ -163,6 +166,62 @@
         <article class="card"><h3>Canal de WhatsApp</h3><p class="muted">Novedades y avisos del canal.</p><a class="btn" href="https://whatsapp.com/channel/0029Vb7H3O46BIEkmr5MKM40" target="_blank" rel="noopener">Entrar al canal</a></article>
         <article class="card"><h3>Discord</h3><p class="muted">Únete y comparte con la comunidad.</p><a class="btn" href="https://discord.gg/utj6YKWKn" target="_blank" rel="noopener">Unirme a Discord</a></article>
         <article class="card"><h3>Twitch</h3><p class="muted">Directos a las 19:00, hora de España.</p><a class="btn" href="https://www.twitch.tv/minermaster21" target="_blank" rel="noopener">Ver mis directos</a></article>
+        <article class="card"><h3>Kick</h3><p class="muted">También puedes seguir mis directos en Kick.</p><a class="btn" href="https://kick.com/minermaster21" target="_blank" rel="noopener">Ver mi canal de Kick</a></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="noticias" style="background:#0c1422">
+    <div class="wrap">
+      <div class="section-label">Últimas novedades</div>
+      <h2>Noticias de MINERMASTER21</h2>
+      <div class="news-list">
+        <article class="news-item">
+          <div class="news-date">MIÉRCOLES · 11 DE NOVIEMBRE DE 2026</div>
+          <h3>¡Ya está MINERMASTER21 en Kick!</h3>
+          <p class="muted">El miércoles 11 de noviembre por la tarde, MINERMASTER21 realizó su primer directo en Kick, comenzando una nueva etapa como creador de contenido en esta plataforma. ¡Esto es solo el comienzo!</p>
+          <a class="btn" href="https://kick.com/minermaster21" target="_blank" rel="noopener">Visitar Kick</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="comunidad">
+    <div class="wrap">
+      <div class="section-label">Un espacio para la comunidad</div>
+      <h2>Comunidad MINERMASTER21</h2>
+      <p class="muted">Un lugar para compartir novedades, fotos y publicaciones con otros miembros.</p>
+      <div class="community-intro">
+        <span class="coming-soon">ACCESO PRIVADO · EN PREPARACIÓN</span>
+        <h3>Tu comunidad, tus publicaciones</h3>
+        <p class="muted">No será un chat: funcionará como un muro de publicaciones, al estilo de una red social. Los miembros podrán escribir publicaciones, subir fotos, dar Me gusta y comentar.</p>
+        <p><strong>¿Quién podrá entrar?</strong></p>
+        <ul class="muted">
+          <li>Miembros del canal.</li>
+          <li>Las 10 personas ganadoras del sorteo de acceso.</li>
+          <li>Algunas personas invitadas por MINERMASTER21 desde el principio.</li>
+        </ul>
+      </div>
+      <div class="community-grid">
+        <article class="community-feature"><div class="emoji">📝</div><h3>Publicaciones</h3><p class="muted">Comparte textos y novedades en tu propio perfil.</p></article>
+        <article class="community-feature"><div class="emoji">📸</div><h3>Fotos</h3><p class="muted">Añade imágenes a tus publicaciones.</p></article>
+        <article class="community-feature"><div class="emoji">❤️</div><h3>Me gusta</h3><p class="muted">Reacciona a las publicaciones de otros miembros.</p></article>
+        <article class="community-feature"><div class="emoji">💬</div><h3>Comentarios</h3><p class="muted">Responde y conversa debajo de cada publicación.</p></article>
+        <article class="community-feature"><div class="emoji">👤</div><h3>Perfiles</h3><p class="muted">Cada miembro tendrá su perfil y sus publicaciones.</p></article>
+        <article class="community-feature"><div class="emoji">🛡️</div><h3>Administración</h3><p class="muted">El administrador podrá gestionar accesos y moderar publicaciones.</p></article>
+      </div>
+      <div class="access-note" style="margin-top:18px"><strong>Importante:</strong> este apartado muestra el diseño y las funciones previstas. Para que las cuentas, las fotos, los comentarios y los Me gusta funcionen de verdad para todos los visitantes, hay que conectar un servicio seguro de usuarios y base de datos. No se habilita el acceso público hasta configurar esa protección.</div>
+    </div>
+  </section>
+
+  <section id="clasificacion" style="background:#0c1422">
+    <div class="wrap">
+      <div class="section-label">La comunidad compite y participa</div>
+      <h2>Clasificaciones</h2>
+      <div class="rank-list">
+        <article class="card"><h3>🏆 Miembros destacados</h3><p class="muted">Próximamente</p></article>
+        <article class="card"><h3>⭐ Publicaciones populares</h3><p class="muted">Próximamente</p></article>
+        <article class="card"><h3>🎉 Eventos y sorteos</h3><p class="muted">Próximamente</p></article>
       </div>
     </div>
   </section>
@@ -180,10 +239,14 @@
   </section>
 </main>
 
-<button class="music-tab" id="music-toggle" type="button" disabled aria-label="Reproducir música de fondo">
-  <span>♫</span> Música
-</button>
-<div class="music-player" aria-hidden="true"><div id="unity-player"></div></div>
+<aside class="music-card" aria-label="Reproductor de música de fondo">
+  <div class="music-heading"><strong>Música de fondo</strong><span class="music-credit">Volumen: 12%</span></div>
+  <div class="music-player"><div id="unity-player"></div></div>
+  <div class="music-controls">
+    <button id="music-toggle" type="button" disabled>Preparando…</button>
+    <span class="music-credit">TheFatRat · Unity</span>
+  </div>
+</aside>
 
 <footer>
   <div class="wrap">
@@ -194,6 +257,7 @@
 </footer>
 <script>
   let unityPlayer;
+  let musicPlaying = false;
   const musicButton = document.getElementById('music-toggle');
   function onYouTubeIframeAPIReady() {
     unityPlayer = new YT.Player('unity-player', {
@@ -203,15 +267,19 @@
         onReady: function (event) {
           event.target.setVolume(12);
           musicButton.disabled = false;
-          musicButton.innerHTML = '<span>♫</span> Música';
+          musicButton.textContent = 'Reproducir música';
+        },
+        onStateChange: function (event) {
+          musicPlaying = event.data === YT.PlayerState.PLAYING;
+          musicButton.textContent = musicPlaying ? 'Pausar música' : 'Reproducir música';
         }
       }
     });
   }
   musicButton.addEventListener('click', function () {
     if (!unityPlayer || !unityPlayer.playVideo) return;
-    unityPlayer.playVideo();
-    musicButton.hidden = true;
+    if (musicPlaying) unityPlayer.pauseVideo();
+    else unityPlayer.playVideo();
   });
   const youtubeApi = document.createElement('script');
   youtubeApi.src = 'https://www.youtube.com/iframe_api';
