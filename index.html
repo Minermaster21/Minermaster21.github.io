@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Minermaster21: creador de contenido, humor, vídeos y proyectos.">
+  <meta name="description" content="Minermaster21: vídeos, Shorts, humor, gaming y proyectos.">
   <title>Minermaster21 | Creador de contenido</title>
   <style>
     :root{--bg:#080d18;--panel:#111b2d;--panel2:#17243a;--text:#f4f7fb;--muted:#b8c4d6;--blue:#48a6ff;--cyan:#69e0e8}
@@ -37,7 +37,16 @@
     .placeholder{min-height:155px;border:1px dashed #6f8eaf88;border-radius:15px;display:grid;place-items:center;text-align:center;padding:20px;color:var(--muted);background:#ffffff05}
     .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .gallery .placeholder{min-height:190px}
+    .gallery-card{overflow:hidden;background:var(--panel);border:1px solid #ffffff18;border-radius:18px;min-height:190px}
+    .gallery-card img{display:block;width:100%;height:190px;object-fit:cover;background:#14243a}
+    .gallery-caption{padding:12px 15px;color:var(--muted);font-size:.92rem}
+    .gallery-card .gallery-mark{height:190px;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,#23619a,#101b2d 70%);font-size:2rem;font-weight:900;letter-spacing:2px;color:#fff}
+    .gallery-card .gallery-mark span{color:var(--cyan)}
+    .gallery-video{position:relative;aspect-ratio:16/9;background:#000}
+    .gallery-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
     .video-card{display:flex;flex-direction:column;gap:12px}
+    .youtube-player{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:18px;border:1px solid #ffffff20;background:#000;box-shadow:0 12px 35px #0005}
+    .youtube-player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
     .tag{display:inline-block;border:1px solid #ffffff25;border-radius:99px;padding:4px 10px;color:var(--cyan);font-size:.78rem}
     footer{border-top:1px solid #ffffff18;padding:28px 0;color:var(--muted);font-size:.9rem}
     @media(max-width:720px){.links{gap:10px;font-size:.82rem}.story{grid-template-columns:1fr}.grid,.gallery{grid-template-columns:1fr}.hero{padding:65px 0 55px}}
@@ -96,10 +105,19 @@
       <div class="section-label">Contenido</div>
       <h2>Mis vídeos</h2>
       <p class="muted">Aquí puedes destacar tus vídeos favoritos. Sustituye cada espacio por el enlace o la miniatura de un vídeo tuyo.</p>
-      <div class="grid">
-        <article class="card video-card"><span class="tag">Humor</span><div class="placeholder">Añade aquí una miniatura de tu vídeo</div><h3>Vídeo destacado 1</h3><p class="muted">Escribe una breve descripción.</p></article>
-        <article class="card video-card"><span class="tag">Gaming</span><div class="placeholder">Añade aquí una miniatura de tu vídeo</div><h3>Vídeo destacado 2</h3><p class="muted">Escribe una breve descripción.</p></article>
-        <article class="card video-card"><span class="tag">Shorts</span><div class="placeholder">Añade aquí una miniatura de tu Short</div><h3>Vídeo destacado 3</h3><p class="muted">Escribe una breve descripción.</p></article>
+      <p class="muted">Aquí aparecen las publicaciones públicas de mi canal. La lista se actualiza automáticamente cuando subo nuevos vídeos.</p>
+      <div class="youtube-player">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed?listType=playlist&list=UUZcRF0BA1MjqbuzeFhusd5A"
+          title="Todos los vídeos de Minermaster21"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
+      <div class="actions">
+        <a class="btn" href="https://www.youtube.com/@Minermaster21/videos" target="_blank" rel="noopener">Ver todos los vídeos en YouTube</a>
+        <a class="btn secondary" href="https://www.youtube.com/@Minermaster21/shorts" target="_blank" rel="noopener">Ver mis Shorts</a>
       </div>
     </div>
   </section>
@@ -108,9 +126,23 @@
     <div class="wrap">
       <div class="section-label">Momentos y recuerdos</div>
       <h2>Galería</h2>
-      <p class="muted">Añade fotografías de tus vídeos, proyectos, miniaturas o diseños. Publica solo imágenes que estés cómodo compartiendo.</p>
+      <p class="muted">Imágenes públicas de la marca Minermaster21 y una vista previa de tus publicaciones. La galería utiliza tu identidad de YouTube, no fotografías personales privadas.</p>
       <div class="gallery">
-        <div class="placeholder">Tu fotografía 1</div><div class="placeholder">Tu fotografía 2</div><div class="placeholder">Tu fotografía 3</div>
+        <article class="gallery-card">
+          <img src="https://unavatar.io/youtube/@Minermaster21" alt="Imagen de perfil pública de Minermaster21" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+          <div class="gallery-mark" style="display:none">MINER<span>MASTER21</span></div>
+          <div class="gallery-caption"><strong>Mi canal</strong><br>Imagen de perfil pública de YouTube</div>
+        </article>
+        <article class="gallery-card">
+          <div class="gallery-video">
+            <iframe src="https://www.youtube-nocookie.com/embed?listType=playlist&amp;list=UUZcRF0BA1MjqbuzeFhusd5A" title="Miniaturas y vídeos de Minermaster21" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div class="gallery-caption"><strong>Mis vídeos</strong><br>Vista previa de mis publicaciones</div>
+        </article>
+        <a class="gallery-card" href="https://www.youtube.com/@Minermaster21/shorts" target="_blank" rel="noopener">
+          <div class="gallery-mark">SHORTS <span>↗</span></div>
+          <div class="gallery-caption"><strong>Mis Shorts</strong><br>Ver los vídeos cortos del canal</div>
+        </a>
       </div>
     </div>
   </section>
