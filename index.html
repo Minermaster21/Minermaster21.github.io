@@ -50,16 +50,18 @@
     .youtube-player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
     .tag{display:inline-block;border:1px solid #ffffff25;border-radius:99px;padding:4px 10px;color:var(--cyan);font-size:.78rem}
     footer{border-top:1px solid #ffffff18;padding:28px 0;color:var(--muted);font-size:.9rem}
-    .music-card{position:fixed;right:14px;bottom:14px;z-index:20;width:min(270px,calc(100vw - 28px));padding:10px;background:#101b2df2;border:1px solid #ffffff30;border-radius:16px;box-shadow:0 12px 35px #0009;backdrop-filter:blur(12px)}
-    .music-heading{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;font-size:.85rem}
+    .music-card{position:fixed;right:14px;bottom:14px;z-index:20;width:min(205px,calc(100vw - 28px));padding:8px;background:#101b2df2;border:1px solid #ffffff30;border-radius:16px;box-shadow:0 12px 35px #0009;backdrop-filter:blur(12px)}
+    .music-heading{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:5px;font-size:.78rem}
     .music-heading strong{color:var(--cyan)}
     .music-player{position:fixed;left:-10000px;top:0;width:200px;height:200px;overflow:hidden;opacity:0;pointer-events:none}
     .music-player #unity-player,.music-player iframe{display:block;width:200px;height:200px;border:0}
-    .music-controls{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px}
-    .music-controls button{border:0;border-radius:999px;padding:8px 13px;background:var(--blue);color:#06101d;font-weight:700;cursor:pointer}
-    .music-credit{font-size:.72rem;color:var(--muted)}
+    .music-controls{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:5px}
+    .music-controls button{border:0;border-radius:999px;padding:7px 10px;background:var(--blue);color:#06101d;font-weight:700;cursor:pointer}
+    .music-credit{font-size:.68rem;color:var(--muted)}
+    .music-select{width:100%;margin-top:4px;padding:6px 8px;border-radius:9px;border:1px solid #ffffff30;background:#17243a;color:var(--text);font-size:.75rem}
+    .music-label{font-size:.68rem;color:var(--muted)}
     .news-list{display:grid;gap:16px}.news-item{background:var(--panel);border:1px solid #ffffff18;border-radius:18px;padding:22px}.news-date{color:var(--cyan);font-size:.82rem;font-weight:700;letter-spacing:.5px}.news-item h3{margin:7px 0}.community-intro{background:linear-gradient(145deg,#142b47,#111b2d);border:1px solid #ffffff20;border-radius:20px;padding:24px;margin:18px 0}.community-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.community-feature{background:var(--panel);border:1px solid #ffffff18;border-radius:16px;padding:18px}.community-feature .emoji{font-size:1.5rem}.access-note{border:1px solid #69e0e855;background:#69e0e810;border-radius:14px;padding:16px;color:var(--muted)}.coming-soon{display:inline-block;border:1px solid #69e0e855;color:var(--cyan);border-radius:99px;padding:4px 10px;font-size:.75rem;font-weight:700}.rank-list{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.rank-list .card{min-height:120px}
-    @media(max-width:720px){.links{gap:10px;font-size:.82rem}.story{grid-template-columns:1fr}.grid,.gallery{grid-template-columns:1fr}.hero{padding:65px 0 55px}.brand{font-size:1rem}.brand img{width:32px;height:32px}.music-card{right:10px;bottom:10px;width:225px}}
+    @media(max-width:720px){.links{gap:10px;font-size:.82rem}.story{grid-template-columns:1fr}.grid,.gallery{grid-template-columns:1fr}.hero{padding:65px 0 55px}.brand{font-size:1rem}.brand img{width:32px;height:32px}.music-card{right:10px;bottom:10px;width:185px}}
   </style>
 </head>
 <body>
@@ -186,7 +188,7 @@
     </div>
   </section>
 
-  <section id="comunidad">
+  <section id="comunidad-publicaciones">
     <div class="wrap">
       <div class="section-label">Un espacio para la comunidad</div>
       <h2>Comunidad MINERMASTER21</h2>
@@ -240,11 +242,16 @@
 </main>
 
 <aside class="music-card" aria-label="Reproductor de música de fondo">
-  <div class="music-heading"><strong>Música de fondo</strong><span class="music-credit">Volumen: 12%</span></div>
+  <div class="music-heading"><strong>Música de fondo</strong><span class="music-credit">12%</span></div>
+  <label class="music-label" for="music-track">Canción</label>
+  <select class="music-select" id="music-track" aria-label="Elegir canción">
+    <option value="n8X9_MgEdCg" data-credit="TheFatRat · Unity">Unity — TheFatRat</option>
+    <option value="K4DyBUG242c" data-credit="Cartoon, Jéja y Daniel Levi · NCS">On &amp; On — Cartoon, Jéja y Daniel Levi</option>
+  </select>
   <div class="music-player" aria-hidden="true"><div id="unity-player"></div></div>
   <div class="music-controls">
     <button id="music-toggle" type="button" disabled>Preparando…</button>
-    <span class="music-credit">TheFatRat · Unity</span>
+    <span class="music-credit" id="music-credit">TheFatRat</span>
   </div>
 </aside>
 
@@ -260,6 +267,8 @@
   let musicPlaying = false;
   let musicReady = false;
   const musicButton = document.getElementById('music-toggle');
+  const musicTrack = document.getElementById('music-track');
+  const musicCredit = document.getElementById('music-credit');
 
   // El reproductor de YouTube queda fuera de la pantalla: solo se muestra
   // este pequeño control, nunca la imagen del videoclip.
@@ -267,7 +276,7 @@
     unityPlayer = new YT.Player('unity-player', {
       width: '200',
       height: '200',
-      videoId: 'n8X9_MgEdCg',
+      videoId: musicTrack.value,
       playerVars: {
         playsinline: 1,
         controls: 0,
@@ -297,6 +306,13 @@
       }
     });
   };
+
+  musicTrack.addEventListener('change', function () {
+    if (!musicReady || !unityPlayer) return;
+    unityPlayer.loadVideoById(musicTrack.value);
+    musicCredit.textContent = musicTrack.options[musicTrack.selectedIndex].dataset.credit || '';
+    musicPlaying = true;
+  });
 
   musicButton.addEventListener('click', function () {
     if (!musicReady || !unityPlayer) return;
