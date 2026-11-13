@@ -50,22 +50,48 @@
     .youtube-player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
     .tag{display:inline-block;border:1px solid #ffffff25;border-radius:99px;padding:4px 10px;color:var(--cyan);font-size:.78rem}
     footer{border-top:1px solid #ffffff18;padding:28px 0;color:var(--muted);font-size:.9rem}
-    .music-launch{position:fixed;right:12px;bottom:12px;z-index:30;border:1px solid #ffffff35;border-radius:999px;padding:6px 10px;background:#101b2deF;color:var(--text);font-size:.72rem;font-weight:700;box-shadow:0 5px 18px #0008;cursor:pointer}
-    .music-launch:hover{border-color:var(--cyan);color:var(--cyan)}
-    .music-card{position:fixed;right:12px;bottom:52px;z-index:29;width:min(245px,calc(100vw - 24px));padding:12px;background:#101b2df7;border:1px solid #ffffff30;border-radius:14px;box-shadow:0 12px 35px #0009;backdrop-filter:blur(12px)}
-    .music-card[hidden]{display:none}
-    .music-heading{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;font-size:.82rem}
+    .music-card{position:fixed;right:14px;bottom:14px;z-index:20;width:min(205px,calc(100vw - 28px));padding:8px;background:#101b2df2;border:1px solid #ffffff30;border-radius:16px;box-shadow:0 12px 35px #0009;backdrop-filter:blur(12px)}
+    .music-heading{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:5px;font-size:.78rem}
     .music-heading strong{color:var(--cyan)}
-    .music-close{border:0;background:transparent;color:var(--muted);font-size:1.1rem;cursor:pointer}
-    .music-controls{display:flex;align-items:center;gap:8px;margin-top:9px}
-    .music-controls button{border:0;border-radius:999px;padding:7px 12px;background:var(--blue);color:#06101d;font-weight:700;cursor:pointer}
-    .music-credit{font-size:.7rem;color:var(--muted)}
-    .music-select{width:100%;margin-top:5px;padding:8px;border-radius:9px;border:1px solid #ffffff30;background:#17243a;color:var(--text);font-size:.78rem}
-    .music-label{font-size:.7rem;color:var(--muted)}
-    .music-volume{width:100%;margin:8px 0 0;accent-color:var(--blue)}
-    @media(max-width:720px){.music-launch{right:9px;bottom:9px}.music-card{right:9px;bottom:48px}}
+    .music-player{position:fixed;left:-10000px;top:0;width:200px;height:200px;overflow:hidden;opacity:0;pointer-events:none}
+    .music-player #unity-player,.music-player iframe{display:block;width:200px;height:200px;border:0}
+    .music-controls{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:5px}
+    .music-controls button{border:0;border-radius:999px;padding:7px 10px;background:var(--blue);color:#06101d;font-weight:700;cursor:pointer}
+    .music-credit{font-size:.68rem;color:var(--muted)}
+    .music-select{width:100%;margin-top:4px;padding:6px 8px;border-radius:9px;border:1px solid #ffffff30;background:#17243a;color:var(--text);font-size:.75rem}
+    .music-label{font-size:.68rem;color:var(--muted)}
     .news-list{display:grid;gap:16px}.news-item{background:var(--panel);border:1px solid #ffffff18;border-radius:18px;padding:22px}.news-date{color:var(--cyan);font-size:.82rem;font-weight:700;letter-spacing:.5px}.news-item h3{margin:7px 0}.community-intro{background:linear-gradient(145deg,#142b47,#111b2d);border:1px solid #ffffff20;border-radius:20px;padding:24px;margin:18px 0}.community-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.community-feature{background:var(--panel);border:1px solid #ffffff18;border-radius:16px;padding:18px}.community-feature .emoji{font-size:1.5rem}.access-note{border:1px solid #69e0e855;background:#69e0e810;border-radius:14px;padding:16px;color:var(--muted)}.coming-soon{display:inline-block;border:1px solid #69e0e855;color:var(--cyan);border-radius:99px;padding:4px 10px;font-size:.75rem;font-weight:700}.rank-list{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.rank-list .card{min-height:120px}
+
+    .stats-grid,.achievement-grid,.interactive-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .stat-card,.achievement-card,.interactive-card{background:var(--panel);border:1px solid #ffffff18;border-radius:18px;padding:20px}
+    .stat-number{font-size:2rem;font-weight:900;color:var(--cyan);line-height:1.2}
+    .achievement-card{position:relative;overflow:hidden}.achievement-icon{font-size:1.8rem}.achievement-card small{color:var(--muted)}
+    .progress-track{height:10px;background:#ffffff18;border-radius:99px;overflow:hidden;margin:12px 0 6px}.progress-fill{height:100%;width:83.33%;background:linear-gradient(90deg,var(--blue),var(--cyan));border-radius:99px}
+    .interactive-card button,.poll-option{border:0;border-radius:12px;padding:11px 14px;background:var(--blue);color:#06101d;font-weight:800;cursor:pointer;margin:5px 5px 5px 0}
+    .interactive-card button.secondary-action{background:transparent;color:var(--text);border:1px solid #ffffff35}
+    .poll-option{display:block;width:100%;text-align:left;background:#172b45;color:var(--text);border:1px solid #ffffff20}
+    .poll-option:disabled{opacity:.8;cursor:default}.poll-result{height:8px;background:#ffffff18;border-radius:99px;overflow:hidden;margin:5px 0 12px}.poll-result span{display:block;height:100%;background:var(--cyan)}
+    .game-score{font-size:2.3rem;font-weight:900;color:var(--cyan)}.secret-message{display:none;margin-top:14px;padding:14px;border:1px solid var(--cyan);border-radius:14px;background:#69e0e810}
+    .mini-note{font-size:.82rem;color:var(--muted)}
+    @media(max-width:720px){.stats-grid,.achievement-grid,.interactive-grid{grid-template-columns:1fr}.links{max-height:90px;overflow:auto}}
+
     @media(max-width:720px){.links{gap:10px;font-size:.82rem}.story{grid-template-columns:1fr}.grid,.gallery{grid-template-columns:1fr}.hero{padding:65px 0 55px}.brand{font-size:1rem}.brand img{width:32px;height:32px}.music-card{right:10px;bottom:10px;width:185px}}
+
+    .music-launch{position:fixed;right:14px;bottom:14px;z-index:22;border:1px solid #ffffff35;border-radius:999px;padding:10px 15px;min-height:40px;background:var(--blue);color:#06101d;font-size:.9rem;font-weight:800;box-shadow:0 6px 20px #0008;cursor:pointer}
+    .music-card{position:fixed;right:14px;bottom:62px;z-index:21;width:min(245px,calc(100vw - 28px));padding:12px;background:#101b2df7;border:1px solid #ffffff30;border-radius:14px;box-shadow:0 12px 35px #0009;backdrop-filter:blur(12px)}
+    .music-card[hidden]{display:none}
+    .music-heading{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;font-size:.85rem}
+    .music-heading strong{color:var(--cyan)}
+    .music-close{border:0;border-radius:8px;padding:2px 8px;background:#ffffff15;color:var(--text);font-size:1.15rem;cursor:pointer}
+    .music-player{position:fixed;left:-10000px;top:0;width:200px;height:200px;overflow:hidden;opacity:0;pointer-events:none}
+    .music-player #unity-player,.music-player iframe{display:block;width:200px;height:200px;border:0}
+    .music-controls{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px}
+    .music-controls button{border:0;border-radius:999px;padding:8px 12px;background:var(--blue);color:#06101d;font-weight:700;cursor:pointer}
+    .music-credit{font-size:.72rem;color:var(--muted)}
+    .music-select{width:100%;margin-top:4px;padding:7px 8px;border-radius:9px;border:1px solid #ffffff30;background:#17243a;color:var(--text);font-size:.8rem}
+    .music-label{display:block;margin-top:7px;font-size:.72rem;color:var(--muted)}
+    .music-volume{width:100%;margin:7px 0 0;accent-color:var(--blue)}
+    @media(max-width:720px){.music-launch{right:10px;bottom:10px;padding:11px 16px;min-height:42px;font-size:.92rem}.music-card{right:10px;bottom:62px;width:min(245px,calc(100vw - 20px))}}
   </style>
 </head>
 <body>
@@ -74,7 +100,7 @@
     <nav>
       <a class="brand" href="#inicio"><img src="https://unavatar.io/youtube/@Minermaster21" alt="Foto de perfil de Minermaster21" onerror="this.style.display='none'"><span>MINERMASTER21</span></a>
       <div class="links">
-        <a href="#historia">Mi historia</a><a href="#videos">Vídeos</a><a href="#noticias">Noticias</a><a href="#comunidad">Comunidad</a><a href="#galeria">Galería</a><a href="#proyectos">Proyectos</a>
+        <a href="#historia">Mi historia</a><a href="#videos">Vídeos</a><a href="#noticias">Noticias</a><a href="#logros">Logros</a><a href="#juega">Minijuego</a><a href="#comunidad">Comunidad</a><a href="#galeria">Galería</a><a href="#proyectos">Proyectos</a>
       </div>
     </nav>
   </div>
@@ -232,6 +258,64 @@
     </div>
   </section>
 
+
+  <section id="logros">
+    <div class="wrap">
+      <div class="section-label">El camino del canal</div>
+      <h2>Mis logros y objetivos</h2>
+      <div class="stats-grid">
+        <article class="stat-card"><div class="stat-number">2023</div><strong>El comienzo</strong><p class="muted">Año en el que comenzó esta aventura.</p></article>
+        <article class="stat-card"><div class="stat-number">1.000</div><strong>Primer gran hito</strong><p class="muted">Una meta importante ya alcanzada.</p></article>
+        <article class="stat-card"><div class="stat-number">1.200</div><strong>Siguiente objetivo</strong><p class="muted">¡Vamos a por la siguiente meta!</p></article>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <strong>Camino hacia los 1.200 suscriptores</strong>
+        <div class="progress-track" role="img" aria-label="Progreso ilustrativo hacia el objetivo de 1.200 suscriptores"><div class="progress-fill"></div></div>
+        <p class="mini-note">Barra ilustrativa: actualiza el porcentaje cuando quieras desde el código de la web. No es un contador conectado en directo.</p>
+      </div>
+      <div class="achievement-grid" style="margin-top:16px">
+        <article class="achievement-card"><div class="achievement-icon">🏁</div><h3>Empezar en YouTube</h3><small>Septiembre de 2023</small></article>
+        <article class="achievement-card"><div class="achievement-icon">🎬</div><h3>Primer vídeo largo</h3><small>«Construyendo una ciudad»</small></article>
+        <article class="achievement-card"><div class="achievement-icon">🌟</div><h3>1.000 suscriptores</h3><small>Un paso enorme para el canal</small></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="juega" style="background:#0c1422">
+    <div class="wrap">
+      <div class="section-label">Zona interactiva</div>
+      <h2>¡Participa en MINERMASTER21!</h2>
+      <div class="interactive-grid">
+        <article class="interactive-card">
+          <div class="emoji">🎮</div><h3>Minijuego: prueba tu suerte</h3>
+          <p class="muted">Pulsa el botón y descubre tu resultado. Tu mejor puntuación se guarda en este dispositivo.</p>
+          <div class="game-score" id="game-score">0</div>
+          <button id="play-game" type="button">Jugar</button>
+          <p class="mini-note" id="game-best">Récord local: 0</p>
+        </article>
+        <article class="interactive-card">
+          <div class="emoji">🗳️</div><h3>¿Qué contenido prefieres?</h3>
+          <p class="muted">Vota por tu tipo de vídeo favorito.</p>
+          <div id="poll-options">
+            <button class="poll-option" data-choice="Gaming">🎮 Gaming</button>
+            <button class="poll-option" data-choice="Humor">😂 Humor</button>
+            <button class="poll-option" data-choice="Retos y curiosidades">🔥 Retos y curiosidades</button>
+          </div>
+          <div id="poll-feedback" class="mini-note" aria-live="polite">La votación se guarda solo en este dispositivo.</div>
+        </article>
+        <article class="interactive-card">
+          <div class="emoji">🔐</div><h3>El rincón secreto</h3>
+          <p class="muted">Hay un pequeño guiño escondido para quienes conocen la historia del nombre.</p>
+          <label for="secret-code" class="mini-note">Introduce el código:</label>
+          <input id="secret-code" type="text" maxlength="12" placeholder="Código" style="display:block;width:100%;padding:11px;margin:8px 0;border-radius:10px;border:1px solid #ffffff35;background:#080d18;color:white">
+          <button id="secret-submit" type="button">Desbloquear</button>
+          <div class="secret-message" id="secret-message">🎉 ¡Encontraste el secreto! El 21 también forma parte de la historia de MINERMASTER21. ¡Gracias por visitar la web!</div>
+          <p class="mini-note">Es un easter egg, no un sistema de seguridad ni una zona privada.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section id="proyectos" style="background:#0c1422">
     <div class="wrap">
       <div class="section-label">Lo que viene</div>
@@ -246,20 +330,20 @@
 </main>
 
 <button class="music-launch" id="music-open" type="button" aria-expanded="false" aria-controls="music-panel">♫ Música</button>
-<aside class="music-card" id="music-panel" aria-label="Reproductor de música" hidden>
+<aside class="music-card" id="music-panel" aria-label="Reproductor de música de fondo" hidden>
   <div class="music-heading">
-    <strong>♫ Música de fondo</strong>
+    <strong>Música de fondo</strong>
     <button class="music-close" id="music-close" type="button" aria-label="Cerrar reproductor">×</button>
   </div>
-  <label class="music-label" for="music-track">Elige un ambiente</label>
-  <select class="music-select" id="music-track">
-    <option value="chill">Chill espacial — original</option>
-    <option value="retro">Aventura retro — original</option>
-    <option value="night">Noche tranquila — original</option>
+  <label class="music-label" for="music-track">Canción</label>
+  <select class="music-select" id="music-track" aria-label="Elegir canción">
+    <option value="n8X9_MgEdCg" data-credit="TheFatRat · Unity">Unity — TheFatRat</option>
+    <option value="K4DyBUG242c" data-credit="Cartoon, Jéja y Daniel Levi · NCS">On &amp; On — Cartoon, Jéja y Daniel Levi</option>
   </select>
+  <div class="music-player" aria-hidden="true"><div id="unity-player"></div></div>
   <div class="music-controls">
-    <button id="music-toggle" type="button">▶ Reproducir</button>
-    <span class="music-credit" id="music-status">Volumen bajo · 12%</span>
+    <button id="music-toggle" type="button" disabled>Preparando…</button>
+    <span class="music-credit" id="music-credit">TheFatRat</span>
   </div>
   <label class="music-label" for="music-volume">Volumen</label>
   <input class="music-volume" id="music-volume" type="range" min="0" max="30" value="12">
@@ -273,105 +357,128 @@
   </div>
 </footer>
 <script>
-  // Música ambiental original generada en el navegador: sin YouTube ni anuncios.
-  const openMusic = document.getElementById('music-open');
-  const musicPanel = document.getElementById('music-panel');
-  const closeMusic = document.getElementById('music-close');
+  let unityPlayer;
+  let musicPlaying = false;
+  let musicReady = false;
   const musicButton = document.getElementById('music-toggle');
   const musicTrack = document.getElementById('music-track');
-  const musicStatus = document.getElementById('music-status');
+  const musicCredit = document.getElementById('music-credit');
+  const musicOpen = document.getElementById('music-open');
+  const musicPanel = document.getElementById('music-panel');
+  const musicClose = document.getElementById('music-close');
   const musicVolume = document.getElementById('music-volume');
 
-  let audioContext = null;
-  let masterGain = null;
-  let musicTimer = null;
-  let musicStep = 0;
-  let musicPlaying = false;
+  function setMusicPanel(open) {
+    musicPanel.hidden = !open;
+    musicOpen.setAttribute('aria-expanded', String(open));
+  }
+  musicOpen.addEventListener('click', function () {
+    setMusicPanel(musicPanel.hidden);
+  });
+  musicClose.addEventListener('click', function () {
+    setMusicPanel(false);
+  });
+  musicVolume.addEventListener('input', function () {
+    if (musicReady && unityPlayer) unityPlayer.setVolume(Number(musicVolume.value));
+  });
 
-  const patterns = {
-    chill: { notes:[220,261.63,329.63,392,329.63,261.63,196,261.63], wave:'sine', beat:520 },
-    retro: { notes:[261.63,329.63,392,523.25,392,329.63,293.66,392], wave:'triangle', beat:330 },
-    night: { notes:[196,246.94,293.66,246.94,174.61,220,261.63,220], wave:'sine', beat:650 }
+  // El reproductor de YouTube queda fuera de la pantalla: solo se muestra
+  // este pequeño control, nunca la imagen del videoclip.
+  window.onYouTubeIframeAPIReady = function () {
+    unityPlayer = new YT.Player('unity-player', {
+      width: '200',
+      height: '200',
+      videoId: musicTrack.value,
+      playerVars: {
+        playsinline: 1,
+        controls: 0,
+        rel: 0,
+        modestbranding: 1,
+        fs: 0,
+        disablekb: 1
+      },
+      events: {
+        onReady: function (event) {
+          musicReady = true;
+          event.target.setVolume(Number(musicVolume.value));
+          musicButton.disabled = false;
+          musicButton.textContent = 'Reproducir música';
+          musicButton.setAttribute('aria-label', 'Reproducir música de fondo');
+        },
+        onStateChange: function (event) {
+          musicPlaying = event.data === YT.PlayerState.PLAYING;
+          musicButton.textContent = musicPlaying ? 'Pausar música' : 'Reproducir música';
+          musicButton.setAttribute('aria-label', musicPlaying ? 'Pausar música de fondo' : 'Reproducir música de fondo');
+        },
+        onError: function () {
+          musicReady = false;
+          musicButton.disabled = true;
+          musicButton.textContent = 'Música no disponible';
+        }
+      }
+    });
   };
 
-  function setVolume() {
-    if (masterGain && audioContext) {
-      masterGain.gain.setTargetAtTime(Number(musicVolume.value) / 100 * 0.18, audioContext.currentTime, 0.08);
-    }
-    musicStatus.textContent = musicPlaying ? `Sonando · ${musicVolume.value}%` : `Volumen bajo · ${musicVolume.value}%`;
-  }
-
-  function playNote(frequency, wave, duration) {
-    if (!audioContext || !masterGain) return;
-    const oscillator = audioContext.createOscillator();
-    const envelope = audioContext.createGain();
-    oscillator.type = wave;
-    oscillator.frequency.value = frequency;
-    envelope.gain.setValueAtTime(0.0001, audioContext.currentTime);
-    envelope.gain.exponentialRampToValueAtTime(0.55, audioContext.currentTime + 0.035);
-    envelope.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + duration);
-    oscillator.connect(envelope);
-    envelope.connect(masterGain);
-    oscillator.start();
-    oscillator.stop(audioContext.currentTime + duration + 0.03);
-  }
-
-  function scheduleMusic() {
-    if (!musicPlaying) return;
-    const pattern = patterns[musicTrack.value] || patterns.chill;
-    const note = pattern.notes[musicStep % pattern.notes.length];
-    playNote(note, pattern.wave, pattern.beat / 1000 * 0.82);
-    if (musicStep % 4 === 0) playNote(note / 2, 'sine', pattern.beat / 1000 * 1.5);
-    musicStep++;
-    musicTimer = window.setTimeout(scheduleMusic, pattern.beat);
-  }
-
-  async function startMusic() {
-    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContextClass) {
-      musicStatus.textContent = 'Audio no compatible en este navegador';
-      return;
-    }
-    if (!audioContext) {
-      audioContext = new AudioContextClass();
-      masterGain = audioContext.createGain();
-      masterGain.connect(audioContext.destination);
-    }
-    await audioContext.resume();
-    setVolume();
+  musicTrack.addEventListener('change', function () {
+    if (!musicReady || !unityPlayer) return;
+    unityPlayer.loadVideoById(musicTrack.value);
+    unityPlayer.setVolume(Number(musicVolume.value));
+    musicCredit.textContent = musicTrack.options[musicTrack.selectedIndex].dataset.credit || '';
     musicPlaying = true;
-    musicStep = 0;
-    musicButton.textContent = 'Ⅱ Pausar';
-    musicStatus.textContent = `Sonando · ${musicVolume.value}%`;
-    scheduleMusic();
-  }
+  });
 
-  function stopMusic() {
-    musicPlaying = false;
-    window.clearTimeout(musicTimer);
-    musicButton.textContent = '▶ Reproducir';
-    musicStatus.textContent = `Pausado · ${musicVolume.value}%`;
-  }
+  musicButton.addEventListener('click', function () {
+    if (!musicReady || !unityPlayer) return;
+    if (musicPlaying) unityPlayer.pauseVideo();
+    else unityPlayer.playVideo();
+  });
 
-  openMusic.addEventListener('click', () => {
-    musicPanel.hidden = !musicPanel.hidden;
-    openMusic.setAttribute('aria-expanded', String(!musicPanel.hidden));
-  });
-  closeMusic.addEventListener('click', () => {
-    musicPanel.hidden = true;
-    openMusic.setAttribute('aria-expanded', 'false');
-  });
-  musicButton.addEventListener('click', () => {
-    if (musicPlaying) stopMusic();
-    else startMusic();
-  });
-  musicTrack.addEventListener('change', () => {
-    if (musicPlaying) {
-      stopMusic();
-      startMusic();
-    }
-  });
-  musicVolume.addEventListener('input', setVolume);
+  const youtubeApi = document.createElement('script');
+  youtubeApi.src = 'https://www.youtube.com/iframe_api';
+  youtubeApi.async = true;
+  document.head.appendChild(youtubeApi);
 </script>
+
+<script>
+  // Minijuego: puntuación aleatoria y récord guardado localmente.
+  const gameScore = document.getElementById('game-score');
+  const gameBest = document.getElementById('game-best');
+  const playGame = document.getElementById('play-game');
+  let bestScore = Number(localStorage.getItem('mm21-best-score') || 0);
+  gameBest.textContent = 'Récord local: ' + bestScore;
+  playGame.addEventListener('click', () => {
+    const score = Math.floor(Math.random() * 100) + 1;
+    gameScore.textContent = score;
+    if (score > bestScore) {
+      bestScore = score;
+      localStorage.setItem('mm21-best-score', String(bestScore));
+      gameBest.textContent = '¡Nuevo récord local: ' + bestScore + '!';
+    } else gameBest.textContent = 'Récord local: ' + bestScore;
+  });
+
+  // Encuesta local: los votos no se envían a un servidor ni se comparten entre visitantes.
+  const pollKey = 'mm21-poll-choice';
+  const pollFeedback = document.getElementById('poll-feedback');
+  const savedVote = localStorage.getItem(pollKey);
+  if (savedVote) {
+    pollFeedback.textContent = 'Ya votaste en este dispositivo: ' + savedVote + '. ¡Gracias!';
+    document.querySelectorAll('.poll-option').forEach(button => button.disabled = true);
+  }
+  document.querySelectorAll('.poll-option').forEach(button => {
+    button.addEventListener('click', () => {
+      localStorage.setItem(pollKey, button.dataset.choice);
+      document.querySelectorAll('.poll-option').forEach(item => item.disabled = true);
+      pollFeedback.textContent = '¡Voto guardado en este dispositivo: ' + button.dataset.choice + '! Gracias por participar.';
+    });
+  });
+
+  // Easter egg público: no utilizar como contraseña ni como protección de contenido.
+  document.getElementById('secret-submit').addEventListener('click', () => {
+    const code = document.getElementById('secret-code').value.trim().toLowerCase();
+    document.getElementById('secret-message').style.display = code === '21' ? 'block' : 'none';
+    if (code !== '21') alert('Ese no es el código. ¡Pista: está en el nombre!');
+  });
+</script>
+
 </body>
 </html>
