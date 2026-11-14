@@ -92,6 +92,19 @@
     .music-label{display:block;margin-top:7px;font-size:.72rem;color:var(--muted)}
     .music-volume{width:100%;margin:7px 0 0;accent-color:var(--blue)}
     @media(max-width:720px){.music-launch{right:10px;bottom:10px;padding:11px 16px;min-height:42px;font-size:.92rem}.music-card{right:10px;bottom:62px;width:min(245px,calc(100vw - 20px))}}
+    /* Mejoras visuales y navegación móvil */
+    :focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+    .card,.stat-card,.achievement-card,.interactive-card,.gallery-card,.news-item,.community-feature{transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+    .card:hover,.stat-card:hover,.achievement-card:hover,.interactive-card:hover,.gallery-card:hover,.news-item:hover,.community-feature:hover{transform:translateY(-3px);border-color:#48a6ff70;box-shadow:0 12px 28px #0004}
+    .links a{transition:color .2s ease}.links a:hover{color:var(--cyan)}
+    .menu-toggle{display:none;border:1px solid #ffffff30;background:var(--panel);color:var(--text);border-radius:10px;padding:9px 12px;font-weight:800;cursor:pointer}
+    .music-progress{height:5px;background:#ffffff20;border-radius:99px;overflow:hidden;margin:8px 0 2px}
+    .music-progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--cyan));border-radius:99px;transition:width .2s linear}
+    .music-time{display:flex;justify-content:space-between;color:var(--muted);font-size:.65rem;font-variant-numeric:tabular-nums}
+    .back-top{position:fixed;left:14px;bottom:14px;z-index:19;width:42px;height:42px;border:1px solid #ffffff30;border-radius:50%;background:#17243aee;color:var(--text);font-size:1.2rem;cursor:pointer;box-shadow:0 6px 20px #0007;display:none}
+    .back-top.visible{display:block}
+    @media(max-width:720px){nav{position:relative;flex-wrap:wrap;padding:11px 0}.menu-toggle{display:block;margin-left:auto}.links{display:none;order:3;width:100%;max-height:none;overflow:visible;flex-direction:column;gap:0;padding:7px 0 3px}.links.open{display:flex}.links a{padding:9px 4px;border-top:1px solid #ffffff12}.hero{padding-top:58px}.back-top{left:10px;bottom:10px;width:38px;height:38px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
   </style>
 </head>
 <body>
@@ -99,7 +112,8 @@
   <div class="wrap">
     <nav>
       <a class="brand" href="#inicio"><img src="https://unavatar.io/youtube/@Minermaster21" alt="Foto de perfil de Minermaster21" onerror="this.style.display='none'"><span>MINERMASTER21</span></a>
-      <div class="links">
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-links">☰ Menú</button>
+      <div class="links" id="site-links">
         <a href="#historia">Mi historia</a><a href="#videos">Vídeos</a><a href="#noticias">Noticias</a><a href="#logros">Logros</a><a href="#juega">Minijuego</a><a href="#comunidad">Comunidad</a><a href="#galeria">Galería</a><a href="#proyectos">Proyectos</a>
       </div>
     </nav>
@@ -339,15 +353,20 @@
   <select class="music-select" id="music-track" aria-label="Elegir canción">
     <option value="n8X9_MgEdCg" data-credit="TheFatRat · Unity">Unity — TheFatRat</option>
     <option value="K4DyBUG242c" data-credit="Cartoon, Jéja y Daniel Levi · NCS">On &amp; On — Cartoon, Jéja y Daniel Levi</option>
+    <option value="B7xai5u_tnk" data-credit="TheFatRat feat. Laura Brehm">Monody — TheFatRat feat. Laura Brehm</option>
+    <option value="Ic-gZlPFTkQ" data-credit="TheFatRat · Música electrónica">Never Be Alone — TheFatRat</option>
   </select>
   <div class="music-player" aria-hidden="true"><div id="unity-player"></div></div>
   <div class="music-controls">
     <button id="music-toggle" type="button" disabled>Preparando…</button>
     <span class="music-credit" id="music-credit">TheFatRat</span>
   </div>
+  <div class="music-progress" aria-label="Progreso de la canción"><div class="music-progress-fill" id="music-progress-fill"></div></div>
+  <div class="music-time"><span id="music-current">0:00</span><span id="music-duration">0:00</span></div>
   <label class="music-label" for="music-volume">Volumen</label>
   <input class="music-volume" id="music-volume" type="range" min="0" max="30" value="12">
 </aside>
+<button class="back-top" id="back-top" type="button" aria-label="Volver arriba">↑</button>
 
 <footer>
   <div class="wrap">
@@ -367,6 +386,26 @@
   const musicPanel = document.getElementById('music-panel');
   const musicClose = document.getElementById('music-close');
   const musicVolume = document.getElementById('music-volume');
+  const progressFill = document.getElementById('music-progress-fill');
+  const currentTimeLabel = document.getElementById('music-current');
+  const durationLabel = document.getElementById('music-duration');
+  function formatMusicTime(seconds) {
+    if (!Number.isFinite(seconds) || seconds < 0) return '0:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
+    return mins + ':' + secs;
+  }
+  function updateMusicProgress() {
+    if (!musicReady || !unityPlayer || typeof unityPlayer.getDuration !== 'function') return;
+    const duration = unityPlayer.getDuration() || 0;
+    const current = unityPlayer.getCurrentTime() || 0;
+    progressFill.style.width = duration ? Math.min(100, current / duration * 100) + '%' : '0%';
+    currentTimeLabel.textContent = formatMusicTime(current);
+    durationLabel.textContent = formatMusicTime(duration);
+  }
+  setInterval(updateMusicProgress, 1000);
+
+  musicCredit.textContent = musicTrack.options[musicTrack.selectedIndex].dataset.credit || '';
 
   function setMusicPanel(open) {
     musicPanel.hidden = !open;
@@ -425,6 +464,8 @@
     unityPlayer.setVolume(Number(musicVolume.value));
     musicCredit.textContent = musicTrack.options[musicTrack.selectedIndex].dataset.credit || '';
     musicPlaying = true;
+    progressFill.style.width = '0%';
+    currentTimeLabel.textContent = '0:00';
   });
 
   musicButton.addEventListener('click', function () {
@@ -432,6 +473,22 @@
     if (musicPlaying) unityPlayer.pauseVideo();
     else unityPlayer.playVideo();
   });
+
+  const menuToggle = document.getElementById('menu-toggle');
+  const siteLinks = document.getElementById('site-links');
+  menuToggle.addEventListener('click', () => {
+    const open = siteLinks.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(open));
+    menuToggle.textContent = open ? '✕ Cerrar' : '☰ Menú';
+  });
+  siteLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+    siteLinks.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.textContent = '☰ Menú';
+  }));
+  const backTop = document.getElementById('back-top');
+  window.addEventListener('scroll', () => backTop.classList.toggle('visible', window.scrollY > 450), {passive:true});
+  backTop.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
 
   const youtubeApi = document.createElement('script');
   youtubeApi.src = 'https://www.youtube.com/iframe_api';
